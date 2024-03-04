@@ -13,6 +13,10 @@ header {
     padding: 20px;
 }
 
+header h1 {
+    color: #FFF;
+}
+
 h1, h2, h3 {
     color: #000;
 }
