@@ -5,25 +5,29 @@ body {
     margin: 0;
     padding: 0;
 }
-
 header {
     background-color: #000;
     text-align: center;
     padding: 20px;
 }
-
 h1 {
     color: #FFFFFF;
 }
-
 h2, h3 {
     color: #000;
 }
-
 section {
     margin: 20px;
 }
-
+.project {
+    margin-bottom: 20px;
+    max-width: 600px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 footer {
     background-color: #000;
     text-align: center;
