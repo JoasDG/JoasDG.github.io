@@ -24,6 +24,10 @@ section {
     margin: 20px;
 }
 
+.clickable-article {
+    cursor: pointer;
+}
+
 .project {
     margin-bottom: 20px;
     max-width: 600px;
