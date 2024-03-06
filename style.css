@@ -29,6 +29,7 @@ section {
     margin-bottom: 20px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    transition-duration: 0.4s;
 }
 
 .project1 {
