@@ -48,5 +48,7 @@ footer {
     text-align: center;
     padding: 20px;
     color: white;
-    position: relative;
+    position:absolute;
+    width:100%;
+    bottom:0px;
 }
