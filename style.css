@@ -2,14 +2,13 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
     color: #000;
-    margin: 50px;
+    margin: 0px;
     padding: 0px;
 }
 header {
     background-color: #000;
     text-align: center;
     padding: 0px;
-    width: 100%;
 }
 h1 {
     color: #FFFFFF;
@@ -51,5 +50,4 @@ footer {
     padding: 20px;
     color: white;
     position: fixed;
-    width: 100%;
 }
