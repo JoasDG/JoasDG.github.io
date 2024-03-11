@@ -8,7 +8,8 @@ body {
 header {
     background-color: #000;
     text-align: center;
-    padding: 20px;
+    padding: 0px;
+    width: 100%;
 }
 h1 {
     color: #FFFFFF;
@@ -50,4 +51,5 @@ footer {
     padding: 20px;
     color: white;
     position: fixed;
+    width: 100%;
 }
