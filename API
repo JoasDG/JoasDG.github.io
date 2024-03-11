@@ -1,1 +1,2 @@
-
+import json
+json.loads(response.text)
