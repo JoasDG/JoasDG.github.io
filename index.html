@@ -9,25 +9,61 @@
 </head>
 
 <body>
-  <header>
+
+  <div class="header">
     <h1>SCRUM</h1>
-  </header>
+  </div>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <article class="project project1">
-      <h3>Vacation Generator</h3>
-      <p>This generator will generate the best vacation location based on your input! Just say what you want and the
-        generator will do the rest.</p>
-      <img src="https://media.istockphoto.com/photos/sign-closed-for-vacation-picture-id1002901930?k=6&m=1002901930&s=170667a&w=0&h=qBq96E4KTqmfhPhNKlJuPyXcWQfsdSmbZIsIgtxrvG8=" alt="VacationImage" width="600" height="345" position="top">
-    </article>
-  </section>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="clickable-card">
+        <h2>Vacation Generator</h2>
+        <p>This generator will generate the best vacation location based on your input! Just say where you want to go
+          and the
+          generator will do the rest.</p>
+        <img src="https://picsum.photos/530/345?grayscale" alt="VacationImage" position="top">
+      </div>
+      <div class="card">
+        <h2>Contact Us</h2>
+        <p>Have any questions? Feel free to contact us!</p>
+        <form>
+          <label for="name">Name:</label>
+          <input type="text" id="name">
+          <br />
+          <br />
+          <label for="email">Email:</label>
+          <input type="email" id="email">
+          <br />
+          <br />
+          <label for="message">Message:</label>
+          <textarea id="message"></textarea>
+          <br />
+          <br />
+          <input type="submit" value="Send">
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="rightcolumn">
+        <div class="card">
+          <h2>About Us</h2>
+          <p>We are a group of students from the Computer Science class at CCollege. We are trying to create a website
+            for
+            a
+            vacation generator.</p>
+        </div>
+        <div class="card">
+          <h2>Follow Us</h2>
+          <p><i>Invalid token</i></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <footer>
-    <p>&#169; 2024 The SCRUM Group</p>
-  </footer>
+  <div class="footer">
+    <h2>&#169; 2024 The SCRUM Group</h2>
+  </div>
 
-  <script src="script.js"></script>
 </body>
 
 </html>
