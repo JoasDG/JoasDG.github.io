@@ -1,56 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  color: #000;
-  margin: 0px;
-  padding: 0px;
-}
-
-header {
-  background-color: #000;
-  text-align: center;
-  padding: 20px;
-  margin: 0px;
-  height: 40px;
-}
-
-h1 {
-  color: #FFFFFF;
-  margin: 0;
-}
-
-h2,
-h3 {
-  color: #000;
-}
-
-section {
-  margin: 20px;
-}
-
-.project {
-  max-width: 600px;
-  padding: 20px;
+  font-family: Arial;
+  padding: 10px;
+  background: #f0f0f0;
+  border-style: ridge;
   border-radius: 10px;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  background: black;
+  color: white;
+  border-radius: 10px;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+.leftcolumn {
+  float: left;
+  width: 50%;
+  padding-right: 20px;
+}
+
+.rightcolumn {
+  float: left;
+  width: 50%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+.card {
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.clickable-card {
+  background-color: #FAFAFA;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition-duration: 0.4s;
 }
 
-.project1 {
-  background-color: white;
+.clickable-card:hover {
+  background-color: #FAFAFA;
   color: black;
+  box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.24), 0 12px 45px 0 rgba(0, 0, 0, 0.19);
 }
 
-footer {
-  background-color: #000;
-  text-align: center;
-  margin: 0px;
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.footer {
   padding: 20px;
+  text-align: center;
+  background: black;
   color: white;
-  position: relative;
-  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* responsive layout - screen adjustment */
+@media screen and (max-width: 800px) {
+
+  .leftcolumn,
+  .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
 }
