@@ -1,2 +1,3 @@
 function projectRedirect() {
-  window.location.href = "../vacationgenerator.html";
+    window.location.href = "https://joasdg.github.io/vg.php";
+}
