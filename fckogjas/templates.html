@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vakantie Bestemming</title>
+</head>
+<body>
+    <h1>Vakantie Bestemming</h1>
+    <form action="{{ url_for('submit') }}" method="POST">
+        <label for="temperature">Houdt u van een warme of koude temperatuur?</label>
+        <select name="temperature" id="temperature">
+            <option value="warm">Warm</option>
+            <option value="koud">Koud</option>
+        </select><br>
+
+        <label for="mountain">Houdt u van bergachtig gebied?</label>
+        <select name="mountain" id="mountain">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="beach">Houdt u van een strand?</label>
+        <select name="beach" id="beach">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="activity">Houdt u van een actieve of relaxed vakantie?</label>
+        <select name="activity" id="activity">
+            <option value="actief">Actief</option>
+            <option value="relaxed">Relaxed</option>
+        </select><br>
+
+        <label for="nature">Houdt u van natuur of houdt u meer van stedelijk gebied?</label>
+        <select name="nature" id="nature">
+            <option value="natuur">Natuur</option>
+            <option value="stad">Stad</option>
+        </select><br>
+
+        <label for="modern">Houdt u van een moderne of authentieke bestemming?</label>
+        <select name="modern" id="modern">
+            <option value="modern">Modern</option>
+            <option value="authentiek">Authentiek</option>
+        </select><br>
+
+        <label for="destination">Wilt u in Europa of wereldwijd op vakantie?</label>
+        <select name="destination" id="destination">
+            <option value="europa">Europa</option>
+            <option value="wereldwijd">Wereldwijd</option>
+        </select><br>
+
+        <label for="religion">Heeft u voorkeur voor geloofsgebieden?</label>
+        <select name="religion" id="religion">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="vehicle">Met welk voertuig moet je ernaartoe kunnen?</label>
+        <select name="vehicle" id="vehicle">
+            <option value="auto">Auto</option>
+            <option value="vliegtuig">Vliegtuig</option>
+        </select><br>
+
+        <label for="tourist_area">Wilt u een toeristisch gebied?</label>
+        <select name="tourist_area" id="tourist_area">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="same_culture">Wilt u dezelfde cultuurzone als uw huidige cultuurzone?</label>
+        <select name="same_culture" id="same_culture">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="remote_destination">Wilt u in een afgelegen bestemming verblijven?</label>
+        <select name="remote_destination" id="remote_destination">
+            <option value="ja">Ja</option>
+            <option value="nee">Nee</option>
+        </select><br>
+
+        <label for="purpose">Komt u voor de cultuur of voor de frisse lucht?</label>
+        <select name="purpose" id="purpose">
+            <option value="cultuur">Cultuur</option>
+            <option value="frisse lucht">Frisse lucht</option>
+        </select><br>
+
+        <button type="submit">Verzend</button>
+    </form>
+</body>
+</html>
