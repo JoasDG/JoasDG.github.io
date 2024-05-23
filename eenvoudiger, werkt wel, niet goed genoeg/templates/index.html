@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vragenlijst</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vragenlijst</h1>
+        <form action="/" method="post">
+            <label for="temperature">Wat is je favoriete temperatuur?</label>
+            <select id="temperature" name="temperature">
+                <option value="warm">Warm</option>
+                <option value="koud">Koud</option>
+            </select>
+            <br>
+            <label for="mountain">Hou je van bergen?</label>
+            <select id="mountain" name="mountain">
+                <option value="ja">Ja</option>
+                <option value="nee">Nee</option>
+            </select>
+            <br>
+            <label for="beach">Hou je van het strand?</label>
+            <select id="beach" name="beach">
+                <option value="ja">Ja</option>
+                <option value="nee">Nee</option>
+            </select>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
