@@ -1,2 +1,2 @@
 function projectRedirect() {
-  window.location.href = "../vacationgenerator.html";
+  window.location.href = "../mijn_project/templates/index.html";
