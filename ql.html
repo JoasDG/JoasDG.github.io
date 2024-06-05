@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VG</title>
+    <link rel="icon" href="../images/S.png" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 80%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        select {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .remake-button {
+            background-color: #a9a9a9;
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        .remake-button:hover {
+            background-color: #7D7D7D;
+            color: black;
+            box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.24), 0 12px 45px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: black;
+            color: white;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="container">
+                <h1>Vind uw ideale vakantiebestemming</h1>
+                <form method="POST">
+                    <label for="temperature">Houdt u van een warme of koude temperatuur?</label>
+                    <select name="temperature" id="temperature">
+                        <option value="warm">Warm</option>
+                        <option value="koud">Koud</option>
+                    </select>
+
+                    <label for="mountain">Houdt u van bergachtig gebied?</label>
+                    <select name="mountain" id="mountain">
+                        <option value="ja">Ja</option>
+                        <option value="nee">Nee</option>
+                    </select>
+
+                    <label for="beach">Houdt u van een strand?</label>
+                    <select name="beach" id="beach">
+                        <option value="ja">Ja</option>
+                        <option value="nee">Nee</option>
+                    </select>
+
+                    <label for="activity">Houdt u van een actieve of relaxte vakantie?</label>
+                    <select name="activity" id="activity">
+                        <option value="actief">Actief</option>
+                        <option value="relaxed">Relaxed</option>
+                    </select>
+
+                    <label for="nature">Houdt u van natuur of stedelijk gebied?</label>
+                    <select name="nature" id="nature">
+                        <option value="natuur">Natuur</option>
+                        <option value="stad">Stad</option>
+                    </select>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="container">
+                <label for="modern">Houdt u van een moderne of authentieke bestemming?</label>
+                <select name="modern" id="modern">
+                    <option value="modern">Modern</option>
+                    <option value="authentiek">Authentiek</option>
+                </select>
+
+                <label for="destination">Wilt u in Europa of wereldwijd op vakantie?</label>
+                <select name="destination" id="destination">
+                    <option value="Europa">Europa</option>
+                    <option value="wereldwijd">Wereldwijd</option>
+                </select>
+
+                <label for="religion">Heeft u voorkeur voor geloofsgebieden?</label>
+                <select name="religion" id="religion">
+                    <option value="ja">Ja</option>
+                    <option value="nee">Nee</option>
+                </select>
+
+                <label for="vehicle">Met welk voertuig moet je ernaartoe kunnen?</label>
+                <select name="vehicle" id="vehicle">
+                    <option value="auto">Auto</option>
+                    <option value="vliegtuig">Vliegtuig</option>
+                </select>
+
+                <label for="tourist_area">Wilt u een toeristisch gebied?</label>
+                <select name="tourist_area" id="tourist_area">
+                    <option value="ja">Ja</option>
+                    <option value="nee">Nee</option>
+                </select>
+
+                <label for="same_culture">Wilt u dezelfde cultuurzone als uw huidige cultuurzone?</label>
+                <select name="same_culture" id="same_culture">
+                    <option value="ja">Ja</option>
+                    <option value="nee">Nee</option>
+                </select>
+
+                <label for="remote_destination">Wilt u in een afgelegen bestemming verblijven?</label>
+                <select name="remote_destination" id="remote_destination">
+                    <option value="ja">Ja</option>
+                    <option value="nee">Nee</option>
+                </select>
+
+                <label for="purpose">Komt u voor de cultuur of voor de frisse lucht?</label>
+                <select name="purpose" id="purpose">
+                    <option value="cultuur">Cultuur</option>
+                    <option value="frisse lucht">Frisse lucht</option>
+                </select>
+
+                <div class="remake-button" onclick="vacationRedirectResults()">
+                    <p>Verzend</p>
+                </div>
+                <!-- <button type="submit" onclick="vacationRedirectResults()">Verzend</button> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
