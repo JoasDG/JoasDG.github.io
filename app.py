@@ -7,8 +7,8 @@ def home():
     if request.method == 'POST':
         form_data = request.form
         bestemming = bereken_bestemming(form_data)
-        return render_template('result.html', bestemming=bestemming)
-    return render_template('ql.html')
+        return bestemming 
+    return render_template('result.html')
 
 def bereken_bestemming(form_data):
     temperature = form_data.get('temperature')
