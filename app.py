@@ -25,36 +25,53 @@ def bereken_bestemming(form_data):
     remote_destination = form_data.get('remote_destination')
     purpose = form_data.get('purpose')
 
-    # Voorbeeld logica op basis van de formuliergegevens
+    # Logica voor temperatuur en strand/bergen
     if temperature == 'warm':
         if beach == 'ja':
             if destination == 'Europa':
                 return 'Spanje'
-            else:
+            elif destination == 'Azië':
                 return 'Bali'
+            elif destination == 'Amerika':
+                return 'Florida'
+            else:
+                return 'Maldiven'
         elif mountain == 'ja':
             if destination == 'Europa':
                 return 'Zwitserse Alpen'
-            else:
+            elif destination == 'Azië':
+                return 'Himalaya'
+            elif destination == 'Amerika':
                 return 'Rocky Mountains'
+            else:
+                return 'Andes'
     elif temperature == 'koud':
         if mountain == 'ja':
             if destination == 'Europa':
                 return 'Noorwegen'
-            else:
+            elif destination == 'Azië':
+                return 'Japan'
+            elif destination == 'Amerika':
                 return 'Canada'
+            else:
+                return 'Nieuw-Zeeland'
         elif beach == 'ja':
             if destination == 'Europa':
                 return 'IJsland'
+            elif destination == 'Azië':
+                return 'Hokkaido, Japan'
+            elif destination == 'Amerika':
+                return 'Alaska'
             else:
-                return 'Patagonië'
+                return 'Antarctica'
 
+    # Logica voor activiteit en natuur/stad
     if activity == 'actief':
         if nature == 'natuur':
             if modern == 'modern':
                 return 'Nieuw-Zeeland'
             else:
-                return 'Peru'
+                return 'Patagonië'
         elif nature == 'stad':
             if modern == 'modern':
                 return 'Tokyo'
@@ -72,12 +89,18 @@ def bereken_bestemming(form_data):
             else:
                 return 'Parijs'
 
+    # Logica voor religie
     if religion == 'ja':
         if destination == 'Europa':
             return 'Vaticaanstad'
-        else:
+        elif destination == 'Azië':
             return 'India'
+        elif destination == 'Amerika':
+            return 'Mexico'
+        else:
+            return 'Jeruzalem'
 
+    # Logica voor vervoersmiddel en cultuur
     if vehicle == 'auto':
         if same_culture == 'ja':
             return 'België'
@@ -89,6 +112,7 @@ def bereken_bestemming(form_data):
         else:
             return 'New York'
 
+    # Logica voor toeristische gebieden
     if tourist_area == 'ja':
         return 'Orlando'
     elif tourist_area == 'nee':
@@ -97,6 +121,7 @@ def bereken_bestemming(form_data):
         else:
             return 'Madagaskar'
 
+    # Logica voor doel van de reis
     if purpose == 'cultuur':
         return 'Egypte'
     elif purpose == 'frisse lucht':
