@@ -1,14 +1,20 @@
 from flask import Flask, request, render_template
+import logging
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         form_data = request.form
+        app.logger.debug(f'Form Data Received: {form_data}')
         bestemming = bereken_bestemming(form_data)
-        return render_template('../result.html', bestemming=bestemming)
-    return render_template('../ql.html')
+        app.logger.debug(f'Calculated Destination: {bestemming}')
+        return render_template('result.html', bestemming=bestemming)
+    return render_template('ql.html')
 
 def bereken_bestemming(form_data):
     temperature = form_data.get('temperature')
@@ -25,7 +31,8 @@ def bereken_bestemming(form_data):
     remote_destination = form_data.get('remote_destination')
     purpose = form_data.get('purpose')
 
-    # Logica voor temperatuur en strand/bergen
+    app.logger.debug(f'Form Values - Temperature: {temperature}, Mountain: {mountain}, Beach: {beach}, Activity: {activity}, Nature: {nature}, Modern: {modern}, Destination: {destination}, Religion: {religion}, Vehicle: {vehicle}, Tourist Area: {tourist_area}, Same Culture: {same_culture}, Remote Destination: {remote_destination}, Purpose: {purpose}')
+
     if temperature == 'warm':
         if beach == 'ja':
             if destination == 'Europa':
@@ -65,7 +72,6 @@ def bereken_bestemming(form_data):
             else:
                 return 'Antarctica'
 
-    # Logica voor activiteit en natuur/stad
     if activity == 'actief':
         if nature == 'natuur':
             if modern == 'modern':
@@ -89,7 +95,6 @@ def bereken_bestemming(form_data):
             else:
                 return 'Parijs'
 
-    # Logica voor religie
     if religion == 'ja':
         if destination == 'Europa':
             return 'Vaticaanstad'
@@ -100,7 +105,6 @@ def bereken_bestemming(form_data):
         else:
             return 'Jeruzalem'
 
-    # Logica voor vervoersmiddel en cultuur
     if vehicle == 'auto':
         if same_culture == 'ja':
             return 'België'
@@ -112,7 +116,6 @@ def bereken_bestemming(form_data):
         else:
             return 'New York'
 
-    # Logica voor toeristische gebieden
     if tourist_area == 'ja':
         return 'Orlando'
     elif tourist_area == 'nee':
@@ -121,7 +124,6 @@ def bereken_bestemming(form_data):
         else:
             return 'Madagaskar'
 
-    # Logica voor doel van de reis
     if purpose == 'cultuur':
         return 'Egypte'
     elif purpose == 'frisse lucht':
