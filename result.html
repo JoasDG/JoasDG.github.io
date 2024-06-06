@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@
             height: 100vh;
             color: #333;
         }
-
         .container {
             background: white;
             padding: 20px 40px;
@@ -26,25 +24,20 @@
             max-width: 600px;
             text-align: center;
         }
-
         h1 {
             color: #333;
         }
-
         img {
             margin-top: 20px;
             border-radius: 8px;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Uw Bestemming</h1>
-        <!-- <p>Uw ideale vakantiebestemming is: <strong>{{ destination }}</strong></p> -->
-        <div class="destination">{{ destination }}</div>
-        <img src="https://picsum.photos/530/345?grayscale" alt="{{ destination }}">
+        <p>Uw ideale vakantiebestemming is: <strong>{{ bestemming }}</strong></p>
+        <img src="https://picsum.photos/530/345?grayscale" alt="{{ bestemming }}">
     </div>
 </body>
-
 </html>
