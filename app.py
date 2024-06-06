@@ -1,133 +1,108 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-plaatsen = {
-
-    'Madrid': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Barcelona': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Lissabon': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Friesland': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'nee', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Maastricht': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'nee', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Oslo': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Reykjavík': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Berlijn': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Parijs': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Kroatië': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'actief', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Helsinki': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Rome': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Milaan': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Athene': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'ja', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Londen': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Glasgow': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Normandië': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'ja', 'activity': 'actief', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Venetië': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Wenen': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'Europa', 'religion': 'ja', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Pyongyang': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Beijing': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Dhaka': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'ja', 'purpose': 'cultuur'}, 
-
-    'New Delhi': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Tokio': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'ja', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Seoul': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'auto', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Taipei': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Hongkong': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Bali': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'natuurlijk', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Ho Chi Minh stad': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'nee', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'New York': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'ja', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Los Angeles': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Las Vegas': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Ohio': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Alabama': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'California': {'temperature': 'warm', 'mountain': 'ja', 'beach': 'ja', 'activity': 'actief', 'nature': 'natuur', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'ja', 'purpose': 'cultuur'}, 
-
-    'Utah': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'nee', 'activity': 'actief', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'ja', 'purpose': 'frisse lucht'}, 
-
-    'Detroit': {'temperature': 'koud', 'mountain': 'nee', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Rio de Janeiro': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'ja', 'activity': 'actief', 'nature': 'beide', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Salvador': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'ja', 'activity': 'relaxed', 'nature': 'beide', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'cultuur'}, 
-
-    'Manaus': {'temperature': 'warm', 'mountain': 'nee', 'beach': 'nee', 'activity': 'relaxed', 'nature': 'natuur', 'modern': 'authentiek', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'nee', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'frisse lucht'}, 
-
-    'Denver': {'temperature': 'koud', 'mountain': 'ja', 'beach': 'nee', 'activity': 'actief', 'nature': 'stad', 'modern': 'modern', 'destination': 'wereldwijd', 'religion': 'ja', 'vehicle': 'vliegtuig', 'tourist_area': 'ja', 'same_culture': 'nee', 'remote_destination': 'nee', 'purpose': 'frisse lucht'} 
-}
-
-def find_best_destination(user_answers, destinations):
-    best_destination = None
-    best_score = -1
-
-    for destination, properties in destinations.items():
-        score = 0
-        for key, value in user_answers.items():
-            if key in properties and properties[key] == value:
-                score += 1
-        if score > best_score:
-            best_score = score
-            best_destination = destination
-
-    return best_destination
-
 @app.route('/', methods=['GET', 'POST'])
-def index():
+def home():
     if request.method == 'POST':
-        user_answers = {
-            'temperature': request.form['temperature'],
-            'mountain': request.form['mountain'],
-            'beach': request.form['beach'],
-            'activity': request.form['activity'],
-            'nature': request.form['nature'],
-            'modern': request.form['modern'],
-            'destination': request.form['destination'],
-            'religion': request.form['religion'],
-            'vehicle': request.form['vehicle'],
-            'tourist_area': request.form['tourist_area'],
-            'same_culture': request.form['same_culture'],
-            'remote_destination': request.form['remote_destination'],
-            'purpose': request.form['purpose']
-        }
-        best_destination = find_best_destination(user_answers, plaatsen)
-        return redirect(url_for('result', destination=best_destination))
+        form_data = request.form
+        bestemming = bereken_bestemming(form_data)
+        return render_template('result.html', bestemming=bestemming)
     return render_template('ql.html')
 
-@app.route('/result')
-def result():
-    destination = request.args.get('destination')
-    return render_template('result.html', destination=destination)
+def bereken_bestemming(form_data):
+    temperature = form_data.get('temperature')
+    mountain = form_data.get('mountain')
+    beach = form_data.get('beach')
+    activity = form_data.get('activity')
+    nature = form_data.get('nature')
+    modern = form_data.get('modern')
+    destination = form_data.get('destination')
+    religion = form_data.get('religion')
+    vehicle = form_data.get('vehicle')
+    tourist_area = form_data.get('tourist_area')
+    same_culture = form_data.get('same_culture')
+    remote_destination = form_data.get('remote_destination')
+    purpose = form_data.get('purpose')
+
+    # Voorbeeld logica op basis van de formuliergegevens
+    if temperature == 'warm':
+        if beach == 'ja':
+            if destination == 'Europa':
+                return 'Spanje'
+            else:
+                return 'Bali'
+        elif mountain == 'ja':
+            if destination == 'Europa':
+                return 'Zwitserse Alpen'
+            else:
+                return 'Rocky Mountains'
+    elif temperature == 'koud':
+        if mountain == 'ja':
+            if destination == 'Europa':
+                return 'Noorwegen'
+            else:
+                return 'Canada'
+        elif beach == 'ja':
+            if destination == 'Europa':
+                return 'IJsland'
+            else:
+                return 'Patagonië'
+
+    if activity == 'actief':
+        if nature == 'natuur':
+            if modern == 'modern':
+                return 'Nieuw-Zeeland'
+            else:
+                return 'Peru'
+        elif nature == 'stad':
+            if modern == 'modern':
+                return 'Tokyo'
+            else:
+                return 'Rome'
+    elif activity == 'relaxed':
+        if nature == 'natuur':
+            if modern == 'modern':
+                return 'Malediven'
+            else:
+                return 'Toscane'
+        elif nature == 'stad':
+            if modern == 'modern':
+                return 'Dubai'
+            else:
+                return 'Parijs'
+
+    if religion == 'ja':
+        if destination == 'Europa':
+            return 'Vaticaanstad'
+        else:
+            return 'India'
+
+    if vehicle == 'auto':
+        if same_culture == 'ja':
+            return 'België'
+        else:
+            return 'Oostenrijk'
+    elif vehicle == 'vliegtuig':
+        if remote_destination == 'ja':
+            return 'Paaseiland'
+        else:
+            return 'New York'
+
+    if tourist_area == 'ja':
+        return 'Orlando'
+    elif tourist_area == 'nee':
+        if remote_destination == 'ja':
+            return 'Bhutan'
+        else:
+            return 'Madagaskar'
+
+    if purpose == 'cultuur':
+        return 'Egypte'
+    elif purpose == 'frisse lucht':
+        return 'Alaska'
+
+    return 'Onbekende bestemming'
 
 if __name__ == '__main__':
     app.run(debug=True)
