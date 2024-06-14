@@ -140,7 +140,7 @@ def main():
     best_destination = find_best_destination(user_answers, plaatsen)
 
     # Toon de beste bestemming aan de gebruiker
-    print(f"\nUiteindelijke bestemming: {best_destination}")
+    print(f"\nMeest overeenkomende uiteindelijke bestemming: {best_destination}")
 
 
 if __name__ == "__main__":
